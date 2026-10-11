@@ -3,7 +3,6 @@ package com.precificacao;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class PrecificacaoTest {
 
@@ -38,13 +37,12 @@ public class PrecificacaoTest {
         Imposto imposto = new Imposto("ISS", 10.0);
         Precificacao precificacao = new Precificacao(materia, imposto, 40.0);
 
-        double precoVenda = precificacao.precoVenda();
+        precificacao.precoVenda();
 
         assertThat(precificacao.getTaxas()).isNotEmpty();
         
         var primeiraTaxaRegistro = precificacao.getTaxas().get(0);
 
-        assertNotNull(precoVenda);
         assertThat(primeiraTaxaRegistro).hasSize(2);
         assertThat(primeiraTaxaRegistro.get(0)).isEqualTo(10.00);
         assertThat(primeiraTaxaRegistro.get(1)).isEqualTo(40.00);
